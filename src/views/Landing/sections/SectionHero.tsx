@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, ArrowRight, Calendar as CalendarIcon, TrendingUp, DollarSign } from 'lucide-react';
+import { CheckCircle, ArrowRight, TrendingUp } from 'lucide-react';
 
 interface SectionHeroProps {
   onNavigateTo: (path: string) => void;

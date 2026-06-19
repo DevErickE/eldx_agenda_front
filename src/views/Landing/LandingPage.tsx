@@ -21,7 +21,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateTo, scrollTo
   useEffect(() => {
     // Detectar hash na URL e mudar a seção
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1) as PageSection;
+      const hash = window.location.hash.slice(1);
       if (hash === '' || hash === 'home') {
         setCurrentSection('home');
       } else if (['dores', 'solucoes', 'beneficios', 'como-funciona', 'planos', 'faq'].includes(hash)) {
