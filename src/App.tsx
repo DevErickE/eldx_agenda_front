@@ -17,7 +17,19 @@ export interface RouteState {
 }
 
 function parseLocation(): RouteState {
-  const path = window.location.pathname || '/';
+  const basePath = import.meta.env.BASE_URL; // '/eldx_agenda_front/'
+  let path = window.location.pathname || '/';
+  
+  // Remove base path from the pathname
+  if (path.startsWith(basePath)) {
+    path = path.slice(basePath.length);
+  }
+  
+  // Ensure path starts with /
+  if (!path.startsWith('/')) {
+    path = '/' + path;
+  }
+  
   const segments = path.split('/').filter(Boolean);
   
   if (segments.length === 2 && segments[1] === 'planos') {
@@ -60,7 +72,9 @@ function AppContent() {
   }, []);
 
   const navigateTo = (path: string) => {
-    window.history.pushState(null, '', path);
+    const basePath = import.meta.env.BASE_URL; // '/eldx_agenda_front/'
+    const fullPath = basePath + path.replace(/^\//, '');
+    window.history.pushState(null, '', fullPath);
     setRoute(parseLocation());
     window.scrollTo(0, 0);
   };
